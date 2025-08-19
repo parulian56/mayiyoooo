@@ -97,7 +97,7 @@
             margin-bottom: 2rem;
         }
 
-        /* Photo frame section */
+        /* Photo frame section - Updated for responsive sizing */
         .photo-frame-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 30px;
@@ -105,14 +105,15 @@
             margin-bottom: 2rem;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
-            border: 3px solid #E291AA;
-            max-width: 500px;
-            width: 100%;
+            border: 3px solid rgba(135, 206, 235, 0.3);
+            max-width: 90%;
+            width: auto;
             position: relative;
+            display: inline-block;
         }
 
         .photo-frame-title {
-            color: #D67BA8;
+            color: #4169E1;
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             text-align: center;
@@ -121,17 +122,18 @@
 
         .photo-frame {
             position: relative;
-            width: 100%;
-            height: 350px;
-            border: 8px solid #F1A7B5;
+            border: 8px solid #87CEEB;
             border-radius: 20px;
             overflow: hidden;
-            background: linear-gradient(45deg, #FDE2E7, #F7CAC9);
+            background: linear-gradient(45deg, #E0F6FF, #B0E0E6);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 30px rgba(244, 166, 205, 0.3);
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.3);
             position: relative;
+            /* Remove fixed dimensions to allow natural sizing */
+            max-width: 100%;
+            height: auto;
         }
 
         .photo-frame::before {
@@ -141,7 +143,7 @@
             left: -5px;
             right: -5px;
             bottom: -5px;
-            background: linear-gradient(45deg, #F8BBD9, #F4A6CD, #F7CAC9, #FADDE1);
+            background: linear-gradient(45deg, #FF69B4, #87CEEB, #98FB98, #FFB6C1);
             border-radius: 25px;
             z-index: -1;
             animation: rainbow 3s ease-in-out infinite;
@@ -154,16 +156,20 @@
 
         .photo-frame img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            max-width: 500px;
+            max-height: 600px;
+            object-fit: contain;
             border-radius: 12px;
+            display: block;
         }
 
         .photo-placeholder {
-            color: #E291AA;
+            color: #87CEEB;
             font-size: 4rem;
             text-align: center;
             opacity: 0.7;
+            padding: 2rem;
         }
 
         .photo-upload-area {
@@ -172,7 +178,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(244, 166, 205, 0.1);
+            background: rgba(135, 206, 235, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -183,11 +189,11 @@
         }
 
         .photo-upload-area:hover {
-            background: rgba(244, 166, 205, 0.2);
+            background: rgba(135, 206, 235, 0.2);
         }
 
         .upload-text {
-            color: #C85A87;
+            color: #4169E1;
             font-size: 1rem;
             margin-top: 1rem;
             text-align: center;
@@ -412,8 +418,16 @@
                 grid-template-columns: 1fr;
             }
             
-            .photo-frame {
-                height: 250px;
+            .photo-frame img {
+                max-width: 350px;
+                max-height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-frame img {
+                max-width: 280px;
+                max-height: 320px;
             }
         }
     </style>
@@ -439,10 +453,7 @@
         <div class="photo-frame-section">
             <h2 class="photo-frame-title">📷 Photo Frame</h2>
             <div class="photo-frame">
-                <div class="photo-placeholder">🖼️</div>
-                <div class="photo-upload-area" onclick="document.getElementById('photoInput').click()">
-                    <div class="upload-text">Click to upload photo</div>
-                </div>
+                <img src="WhatsApp Image 2025-08-19 at 16.27.22 (1).jpeg" alt="Foto Saya" id="photoDisplay1">
                 <div class="frame-decorations">
                     <div class="frame-decoration">✨</div>
                     <div class="frame-decoration">🌸</div>
@@ -450,27 +461,65 @@
                     <div class="frame-decoration">🦋</div>
                 </div>
             </div>
-            <input type="file" id="photoInput" accept="image/*">
+        </div>
+
+        <div class="photo-frame-section">
+            <h2 class="photo-frame-title">📷 Photo Frame</h2>
+            <div class="photo-frame">
+                <img src="WhatsApp Image 2025-08-19 at 16.27.22.jpeg" alt="Foto Saya" id="photoDisplay2">
+                <div class="frame-decorations">
+                    <div class="frame-decoration">✨</div>
+                    <div class="frame-decoration">🌸</div>
+                    <div class="frame-decoration">💖</div>
+                    <div class="frame-decoration">🦋</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-frame-section">
+            <h2 class="photo-frame-title">📷 Photo Frame</h2>
+            <div class="photo-frame">
+                <img src="WhatsApp Image 2025-08-19 at 16.30.21.jpeg" alt="Foto Saya" id="photoDisplay3">
+                <div class="frame-decorations">
+                    <div class="frame-decoration">✨</div>
+                    <div class="frame-decoration">🌸</div>
+                    <div class="frame-decoration">💖</div>
+                    <div class="frame-decoration">🦋</div>
+                </div>
+            </div>
         </div>
 
         <div class="audio-section">
-            <h2 class="audio-title">🎵 Audio Player</h2>
+            <h2 class="audio-title">🎵 Music Player 🎵</h2>
+
             <div class="custom-audio-player">
+                <audio id="audioPlayer" preload="metadata">
+                    <source src="mayiyoo.mp3" type="audio/mpeg">
+                    <source src="love-song.ogg" type="audio/ogg">
+                    Browser kamu tidak mendukung pemutar audio.
+                </audio>
+
                 <div class="audio-controls">
-                    <button class="play-btn" onclick="togglePlay()">▶️</button>
+                    <button class="play-btn" id="playBtn">▶️</button>
                     <div class="volume-control">
                         <span>🔊</span>
-                        <input type="range" class="volume-slider" min="0" max="100" value="50">
+                        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
                     </div>
                 </div>
-                <div class="progress-bar" onclick="seek(event)">
-                    <div class="progress-fill"></div>
+
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
                 </div>
+
                 <div class="time-display">
-                    <span>0:00</span>
-                    <span>3:45</span>
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
                 </div>
             </div>
+
+            <p style="color: #666; text-align: center; font-style: italic;">
+                🎶 Putar musik favoritmu sambil melihat foto indah 🎶
+            </p>
         </div>
 
         <div class="features-grid">
@@ -500,82 +549,95 @@
     </div>
 
     <script>
-        // Photo upload functionality
-        document.getElementById('photoInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const photoFrame = document.querySelector('.photo-frame');
-                    photoFrame.innerHTML = `<img src="${e.target.result}" alt="Uploaded photo">`;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
         // Audio player functionality
-        let isPlaying = false;
-        let currentTime = 0;
-        const duration = 225; // 3:45 in seconds
+        const audio = document.getElementById("audioPlayer");
+        const playBtn = document.getElementById("playBtn");
+        const volumeSlider = document.getElementById("volumeSlider");
+        const progressBar = document.getElementById("progressBar");
+        const progressFill = document.getElementById("progressFill");
+        const currentTimeEl = document.getElementById("currentTime");
+        const durationEl = document.getElementById("duration");
 
-        function togglePlay() {
-            const playBtn = document.querySelector('.play-btn');
-            const progressFill = document.querySelector('.progress-fill');
-            
-            if (!isPlaying) {
-                playBtn.innerHTML = '⏸️';
-                isPlaying = true;
-                // Simulate playback
-                const interval = setInterval(() => {
-                    if (isPlaying && currentTime < duration) {
-                        currentTime++;
-                        const progress = (currentTime / duration) * 100;
-                        progressFill.style.width = progress + '%';
-                        updateTimeDisplay();
-                    } else {
-                        clearInterval(interval);
-                        if (currentTime >= duration) {
-                            resetPlayer();
-                        }
-                    }
-                }, 1000);
-            } else {
-                playBtn.innerHTML = '▶️';
-                isPlaying = false;
-            }
+        // Format waktu jadi mm:ss
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+            return `${minutes}:${secs}`;
         }
 
-        function seek(event) {
-            const progressBar = event.currentTarget;
-            const clickX = event.offsetX;
-            const width = progressBar.offsetWidth;
-            const newTime = (clickX / width) * duration;
-            currentTime = Math.floor(newTime);
-            
-            const progress = (currentTime / duration) * 100;
-            document.querySelector('.progress-fill').style.width = progress + '%';
-            updateTimeDisplay();
-        }
-
-        function resetPlayer() {
-            isPlaying = false;
-            currentTime = 0;
-            document.querySelector('.play-btn').innerHTML = '▶️';
-            document.querySelector('.progress-fill').style.width = '0%';
-            updateTimeDisplay();
-        }
-
-        function updateTimeDisplay() {
-            const minutes = Math.floor(currentTime / 60);
-            const seconds = currentTime % 60;
-            const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-            document.querySelector('.time-display span:first-child').textContent = timeString;
-        }
-
-        // Volume control
-        document.querySelector('.volume-slider').addEventListener('input', function(e) {
-            console.log('Volume:', e.target.value + '%');
+        // Update durasi setelah metadata loaded
+        audio.addEventListener("loadedmetadata", () => {
+            durationEl.textContent = formatTime(audio.duration);
         });
+
+        // Update progress & waktu berjalan
+        audio.addEventListener("timeupdate", () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressFill.style.width = progress + "%";
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        // Play / Pause
+        playBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.textContent = "⏸️";
+            } else {
+                audio.pause();
+                playBtn.textContent = "▶️";
+            }
+        });
+
+        // Seek lagu lewat progress bar
+        progressBar.addEventListener("click", (e) => {
+            const clickX = e.offsetX;
+            const width = progressBar.offsetWidth;
+            audio.currentTime = (clickX / width) * audio.duration;
+        });
+
+        // Atur volume
+        volumeSlider.addEventListener("input", (e) => {
+            audio.volume = e.target.value;
+        });
+
+        // Function to adjust frame size based on image
+        function adjustFrameSize() {
+            const images = document.querySelectorAll('.photo-frame img');
+            
+            images.forEach((img) => {
+                img.addEventListener('load', function() {
+                    const frame = this.closest('.photo-frame');
+                    const section = this.closest('.photo-frame-section');
+                    
+                    // Calculate aspect ratio
+                    const aspectRatio = this.naturalWidth / this.naturalHeight;
+                    
+                    // Adjust frame dimensions based on image
+                    if (aspectRatio > 1) {
+                        // Landscape orientation
+                        frame.style.width = 'auto';
+                        frame.style.maxWidth = '500px';
+                    } else {
+                        // Portrait or square orientation
+                        frame.style.width = 'auto';
+                        frame.style.maxWidth = '400px';
+                    }
+                    
+                    // Center the section
+                    section.style.display = 'flex';
+                    section.style.flexDirection = 'column';
+                    section.style.alignItems = 'center';
+                });
+                
+                // Trigger load event if image is already loaded
+                if (img.complete) {
+                    img.dispatchEvent(new Event('load'));
+                }
+            });
+        }
+
+        // Initialize frame sizing when page loads
+        window.addEventListener('load', adjustFrameSize);
     </script>
 </body>
 </html>
