@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Pink Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #F8BBD9 0%, #F4A6CD 25%, #F7CAC9 50%, #FADDE1 75%, #F8BBD9 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating cute elements background */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .element {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 20px;
+            animation: floatElement 10s ease-in-out infinite;
+        }
+
+        .element:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; font-size: 15px; }
+        .element:nth-child(2) { left: 20%; top: 80%; animation-delay: 1s; font-size: 25px; }
+        .element:nth-child(3) { left: 60%; top: 40%; animation-delay: 2s; font-size: 18px; }
+        .element:nth-child(4) { left: 80%; top: 70%; animation-delay: 3s; font-size: 22px; }
+        .element:nth-child(5) { left: 40%; top: 10%; animation-delay: 4s; font-size: 16px; }
+        .element:nth-child(6) { left: 90%; top: 30%; animation-delay: 5s; font-size: 20px; }
+        .element:nth-child(7) { left: 5%; top: 60%; animation-delay: 6s; font-size: 19px; }
+        .element:nth-child(8) { left: 70%; top: 85%; animation-delay: 7s; font-size: 17px; }
+
+        @keyframes floatElement {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1); 
+                opacity: 0.4; 
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg) scale(1.2); 
+                opacity: 0.8; 
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* Photo frame section */
+        .photo-frame-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 3px solid #E291AA;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
+
+        .photo-frame-title {
+            color: #D67BA8;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .photo-frame {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            border: 8px solid #F1A7B5;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #FDE2E7, #F7CAC9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(244, 166, 205, 0.3);
+            position: relative;
+        }
+
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #F8BBD9, #F4A6CD, #F7CAC9, #FADDE1);
+            border-radius: 25px;
+            z-index: -1;
+            animation: rainbow 3s ease-in-out infinite;
+        }
+
+        @keyframes rainbow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .photo-placeholder {
+            color: #E291AA;
+            font-size: 4rem;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        .photo-upload-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(244, 166, 205, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .photo-upload-area:hover {
+            background: rgba(244, 166, 205, 0.2);
+        }
+
+        .upload-text {
+            color: #C85A87;
+            font-size: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        #photoInput {
+            display: none;
+        }
+
+        .frame-decorations {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            pointer-events: none;
+        }
+
+        .frame-decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #E291AA;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        .frame-decoration:nth-child(1) { top: -5px; left: -5px; animation-delay: 0s; }
+        .frame-decoration:nth-child(2) { top: -5px; right: -5px; animation-delay: 0.5s; }
+        .frame-decoration:nth-child(3) { bottom: -5px; left: -5px; animation-delay: 1s; }
+        .frame-decoration:nth-child(4) { bottom: -5px; right: -5px; animation-delay: 1.5s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Audio player section */
+        .audio-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(226, 145, 170, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .audio-title {
+            color: #C85A87;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .custom-audio-player {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .play-btn {
+            background: linear-gradient(45deg, #C85A87, #E291AA);
+            border: none;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(200, 90, 135, 0.4);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(200, 90, 135, 0.6);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .volume-slider {
+            width: 100px;
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #C85A87;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #C85A87, #E291AA);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Features grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid rgba(226, 145, 170, 0.3);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(226, 145, 170, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #C85A87;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Quotes section */
+        .quotes-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            border: 2px solid rgba(226, 145, 170, 0.3);
+        }
+
+        .quote-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #444;
+            margin-bottom: 1rem;
+            animation: fadeInOut 5s ease-in-out infinite;
+        }
+
+        .quote-author {
+            color: #C85A87;
+            font-weight: 600;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .photo-frame-section,
+            .audio-section {
+                padding: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo-frame {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="element">🌸</div>
+        <div class="element">💖</div>
+        <div class="element">🦋</div>
+        <div class="element">✨</div>
+        <div class="element">🌺</div>
+        <div class="element">💕</div>
+        <div class="element">🌷</div>
+        <div class="element">🎀</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">Soft Pink Dreams</h1>
+            <p class="subtitle">Elegant & Gentle Design</p>
+        </div>
+
+        <div class="photo-frame-section">
+            <h2 class="photo-frame-title">📷 Photo Frame</h2>
+            <div class="photo-frame">
+                <div class="photo-placeholder">🖼️</div>
+                <div class="photo-upload-area" onclick="document.getElementById('photoInput').click()">
+                    <div class="upload-text">Click to upload photo</div>
+                </div>
+                <div class="frame-decorations">
+                    <div class="frame-decoration">✨</div>
+                    <div class="frame-decoration">🌸</div>
+                    <div class="frame-decoration">💖</div>
+                    <div class="frame-decoration">🦋</div>
+                </div>
+            </div>
+            <input type="file" id="photoInput" accept="image/*">
+        </div>
+
+        <div class="audio-section">
+            <h2 class="audio-title">🎵 Audio Player</h2>
+            <div class="custom-audio-player">
+                <div class="audio-controls">
+                    <button class="play-btn" onclick="togglePlay()">▶️</button>
+                    <div class="volume-control">
+                        <span>🔊</span>
+                        <input type="range" class="volume-slider" min="0" max="100" value="50">
+                    </div>
+                </div>
+                <div class="progress-bar" onclick="seek(event)">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="time-display">
+                    <span>0:00</span>
+                    <span>3:45</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌸</div>
+                <h3 class="feature-title">Soft & Elegant</h3>
+                <p class="feature-description">Beautiful soft pink color scheme that creates a calming and elegant atmosphere perfect for any occasion.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💖</div>
+                <h3 class="feature-title">Lovely Design</h3>
+                <p class="feature-description">Carefully crafted with love and attention to detail, featuring smooth animations and gentle transitions.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🦋</div>
+                <h3 class="feature-title">Interactive Elements</h3>
+                <p class="feature-description">Engaging interactive components with floating animations and hover effects that bring the design to life.</p>
+            </div>
+        </div>
+
+        <div class="quotes-section">
+            <p class="quote-text">"In a world full of colors, pink whispers the sweetest dreams."</p>
+            <p class="quote-author">— Soft Pink Dreams</p>
+        </div>
+    </div>
+
+    <script>
+        // Photo upload functionality
+        document.getElementById('photoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const photoFrame = document.querySelector('.photo-frame');
+                    photoFrame.innerHTML = `<img src="${e.target.result}" alt="Uploaded photo">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Audio player functionality
+        let isPlaying = false;
+        let currentTime = 0;
+        const duration = 225; // 3:45 in seconds
+
+        function togglePlay() {
+            const playBtn = document.querySelector('.play-btn');
+            const progressFill = document.querySelector('.progress-fill');
+            
+            if (!isPlaying) {
+                playBtn.innerHTML = '⏸️';
+                isPlaying = true;
+                // Simulate playback
+                const interval = setInterval(() => {
+                    if (isPlaying && currentTime < duration) {
+                        currentTime++;
+                        const progress = (currentTime / duration) * 100;
+                        progressFill.style.width = progress + '%';
+                        updateTimeDisplay();
+                    } else {
+                        clearInterval(interval);
+                        if (currentTime >= duration) {
+                            resetPlayer();
+                        }
+                    }
+                }, 1000);
+            } else {
+                playBtn.innerHTML = '▶️';
+                isPlaying = false;
+            }
+        }
+
+        function seek(event) {
+            const progressBar = event.currentTarget;
+            const clickX = event.offsetX;
+            const width = progressBar.offsetWidth;
+            const newTime = (clickX / width) * duration;
+            currentTime = Math.floor(newTime);
+            
+            const progress = (currentTime / duration) * 100;
+            document.querySelector('.progress-fill').style.width = progress + '%';
+            updateTimeDisplay();
+        }
+
+        function resetPlayer() {
+            isPlaying = false;
+            currentTime = 0;
+            document.querySelector('.play-btn').innerHTML = '▶️';
+            document.querySelector('.progress-fill').style.width = '0%';
+            updateTimeDisplay();
+        }
+
+        function updateTimeDisplay() {
+            const minutes = Math.floor(currentTime / 60);
+            const seconds = currentTime % 60;
+            const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            document.querySelector('.time-display span:first-child').textContent = timeString;
+        }
+
+        // Volume control
+        document.querySelector('.volume-slider').addEventListener('input', function(e) {
+            console.log('Volume:', e.target.value + '%');
+        });
+    </script>
+</body>
+</html>
