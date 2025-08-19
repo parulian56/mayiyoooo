@@ -446,8 +446,8 @@
 
     <div class="container">
         <div class="header">
-            <h1 class="main-title">Soft Pink Dreams</h1>
-            <p class="subtitle">Elegant & Gentle Design</p>
+            <h1 class="main-title">Selamat Ulang Tahun Yayaaa! 🎉</h1>
+            <p class="subtitle">Semoga tahun ini cita cita yang kamu impikan terwujud</p>
         </div>
 
         <div class="photo-frame-section">
@@ -518,33 +518,33 @@
             </div>
 
             <p style="color: #666; text-align: center; font-style: italic;">
-                🎶 Putar musik favoritmu sambil melihat foto indah 🎶
+                🎶 i have some music for you 🎶
             </p>
         </div>
 
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🌸</div>
-                <h3 class="feature-title">Soft & Elegant</h3>
-                <p class="feature-description">Beautiful soft pink color scheme that creates a calming and elegant atmosphere perfect for any occasion.</p>
+                <h3 class="feature-title">Beautiful Soul</h3>
+                <p class="feature-description">Your gentle spirit and kind heart bring joy and warmth to everyone around you, making every day brighter.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">💖</div>
-                <h3 class="feature-title">Lovely Design</h3>
-                <p class="feature-description">Carefully crafted with love and attention to detail, featuring smooth animations and gentle transitions.</p>
+                <h3 class="feature-title">Loved & Cherished</h3>
+                <p class="feature-description">You are surrounded by love and appreciation. Your presence makes life more meaningful and beautiful.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">🦋</div>
-                <h3 class="feature-title">Interactive Elements</h3>
-                <p class="feature-description">Engaging interactive components with floating animations and hover effects that bring the design to life.</p>
+                <h3 class="feature-title">Dreams Come True</h3>
+                <p class="feature-description">May this new year of your life be filled with amazing adventures, wonderful surprises, and all your dreams coming true.</p>
             </div>
         </div>
 
         <div class="quotes-section">
-            <p class="quote-text">"In a world full of colors, pink whispers the sweetest dreams."</p>
-            <p class="quote-author">— Soft Pink Dreams</p>
+            <p class="quote-text">"Selamat Ulang Tahun Yayaaa! 🎉 Semoga tahun ini penuh dengan kebahagiaan, cinta, dan mimpi-mimpi indah yang terwujud. Kamu selalu membawa keceriaan di setiap hari! 💖"</p>
+            <p class="quote-author">— Dengan Cinta untuk Yayaaa ✨</p>
         </div>
     </div>
 
@@ -638,6 +638,57 @@
 
         // Initialize frame sizing when page loads
         window.addEventListener('load', adjustFrameSize);
+
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.getElementById('floating-hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 800);
+
+        // Celebration function
+        function celebrate() {
+            // Create burst of hearts
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createHeart();
+                }, i * 100);
+            }
+            
+            // Add celebration effects
+            const card = document.querySelector('.birthday-card');
+            card.style.animation = 'none';
+            setTimeout(() => {
+                card.style.animation = 'cardAppear 0.5s ease-out';
+            }, 10);
+            
+            // Play birthday song melody (visual feedback)
+            const btn = document.querySelector('.celebration-btn');
+            btn.style.animation = 'bounce 0.5s ease-in-out 3';
+            
+            // Show special message
+            setTimeout(() => {
+                alert('🎉🎂 Wishing you the happiest of birthdays, dear Yayaa! May all your wishes come true! 🎂🎉');
+            }, 500);
+        }
+
+        // Initial hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 1000);
+        }
+
+
     </script>
 </body>
 </html>
